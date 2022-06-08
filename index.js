@@ -5,12 +5,15 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
 
+// components
+import App from "./src/App";
+
 // Elements
 const rootDomElement = document.getElementById("App");
 const rootRenderElement = createRoot(rootDomElement);
 const rootJsxElement = (
   <BrowserRouter>
-    <div>test</div>
+    <App />
   </BrowserRouter>
 );
 
