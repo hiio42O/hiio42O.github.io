@@ -25,6 +25,10 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
         test: /\.svg$/i,
         loader: "@svgr/webpack",
         options: {

@@ -4,6 +4,9 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 
+// css
+import "./resources/css/app.css";
+
 // Pages
 import Main from "./Main";
 
