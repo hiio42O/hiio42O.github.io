@@ -10,65 +10,88 @@ import WORK from "./resources/images/common/WORK.svg";
 import BLOG from "./resources/images/common/BLOG.svg";
 import GITHUB from "./resources/images/common/GITHUB.svg";
 
-const FlexLayout = styled.div`
-  display: flex;
-  justify-content: ${(props) =>
-    props.justifyContent ? props.justifyContent : "flex-start"};
-  align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+import {
+  FlexCenterLayout,
+  FlexLayout,
+  GridColumnLayout,
+} from "./resources/globalStyle";
+const MainWrapper = styled(FlexCenterLayout)`
+  svg:hover path {
+    fill: red;
+  }
+  @media screen and (max-width: 660px) {
+    padding: 0 20px;
+    width: calc(100% - 40px);
+  }
 `;
-
-const FlexCenterLayout = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const GridColumnLayout = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-`;
-
 const Logo = styled(FlexCenterLayout)`
   grid-column: 1/5;
+
+  @media screen and (max-width: 660px) {
+    a,
+    svg,
+    div {
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;
+
+const SvgWrapper = styled(FlexLayout)`
+  @media screen and (max-width: 660px) {
+    a {
+      height: 65%;
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 
 const Main = () => {
+  useEffect(() => {
+    const svgs = document.querySelectorAll("svg");
+    svgs.forEach((svg, i) => {
+      svg.setAttribute(
+        "viewBox",
+        `0 0 ${svg.getAttribute("width")} ${svg.getAttribute("height")}`
+      );
+    });
+  }, []);
   return (
-    <FlexCenterLayout>
+    <MainWrapper>
       <GridColumnLayout>
         <Logo>
           <Link to="/">
             <HIIO420 />
           </Link>
         </Logo>
-        <FlexLayout>
+        <SvgWrapper>
           <Link to="/">
             <ABOUT />
           </Link>
-        </FlexLayout>
-        <FlexLayout justifyContent="center">
+        </SvgWrapper>
+        <SvgWrapper justifyContent="center">
           <Link to="/">
             <WORK />
           </Link>
-        </FlexLayout>
-        <FlexLayout justifyContent="center">
+        </SvgWrapper>
+        <SvgWrapper justifyContent="center">
           <a href="https://twentytwentyone.tistory.com" target="_blank">
             <BLOG />
           </a>
-        </FlexLayout>
-        <FlexLayout justifyContent="flex-end">
+        </SvgWrapper>
+        <SvgWrapper justifyContent="flex-end">
           <a
             href="https://github.com/hiio42O/hiio42O.github.io.git"
             target="_blank"
           >
             <GITHUB />
           </a>
-        </FlexLayout>
+        </SvgWrapper>
       </GridColumnLayout>
-    </FlexCenterLayout>
+    </MainWrapper>
   );
 };
 
