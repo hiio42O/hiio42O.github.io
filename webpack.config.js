@@ -49,9 +49,15 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".json", ".wasm"],
+    alias: {
+      "@pages": path.resolve(__dirname, "src", "pages"),
+      "@resources": path.resolve(__dirname, "src", "resources"),
+      "@components": path.resolve(__dirname, "src", "components"),
+    },
   },
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
   devtool: "source-map",
 };
