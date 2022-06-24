@@ -11,6 +11,9 @@ import { FlexLayout } from "@resources/globalStyle";
 const HeaderLayout = styled(FlexLayout).attrs({
   as: "header",
 })`
+  position: fixed;
+  top: 0;
+  left: 0;
   padding: 20px;
   @media screen and (max-width: 660px) {
     padding: 10px 20px;

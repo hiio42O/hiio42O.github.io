@@ -2,16 +2,33 @@ var fs = require("fs");
 const path = require("path");
 
 const makePagesListJson = () => {
-  let prevFiles = [];
+  let prevDirs = [];
+
   const pagesDirPath = path.resolve(__dirname, "src", "project");
   if (fs.existsSync(pagesDirPath)) {
     setInterval(() => {
-      let files = fs.readdirSync();
-      if (prevFiles.length !== files.length) {
-        prevFiles = files;
+      let dirs = fs.readdirSync(pagesDirPath);
+      dirs = dirs.filter((file) =>
+        fs
+          .lstatSync(path.resolve(__dirname, "src", "project", file))
+          .isDirectory()
+      );
+      let dirsMap = dirs.map((dir) => {
+        let childDir = fs.readdirSync(
+          path.resolve(__dirname, "src", "project", dir)
+        );
+        childDir = childDir.filter((cd) =>
+          fs
+            .lstatSync(path.resolve(__dirname, "src", "project", dir, cd))
+            .isDirectory()
+        );
+        return [dir, ...childDir];
+      });
+      if (prevDirs.length !== dirsMap.length) {
+        prevDirs = dirsMap;
         fs.writeFile(
           path.resolve(__dirname, "src", "project", "projectList.json"),
-          (files = JSON.stringify(files)),
+          (dirsMap = JSON.stringify(dirsMap)),
           (err) => {
             if (err) throw err;
             console.log("Created");
@@ -21,7 +38,6 @@ const makePagesListJson = () => {
     }, 0);
   }
 };
-
 module.exports = {
   makePagesListJson,
 };

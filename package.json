@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js --open",
+    "postbuild": "react-snap",
     "build": "webpack . --mode production",
     "deploy": "npm run build && gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,12 +18,14 @@
     "@babel/preset-env": "^7.18.0",
     "@babel/preset-react": "^7.17.12",
     "@svgr/webpack": "^6.2.1",
+    "axios": "^0.27.2",
     "babel-loader": "^8.2.5",
     "cname-webpack-plugin": "^3.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "react-snap": "^1.13.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",

@@ -33,7 +33,10 @@ const Nav = () => {
     svgs.forEach((svg, i) => {
       const width = svg.getAttribute("width");
       const height = svg.getAttribute("height");
-      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute(
+        "viewBox",
+        `0 0 ${parseFloat(width)} ${parseFloat(height)}`
+      );
     });
     if (pathname !== "/") {
       const logo = logoRef.current;
@@ -59,7 +62,8 @@ const Nav = () => {
           </Link>
         </SvgWrapper>
         <SvgWrapper justifyContent="center">
-          <a href="https://twentytwentyone.tistory.com" target="_blank">
+          {/* <a href="https://twentytwentyone.tistory.com" target="_blank"> */}
+          <a href="/project/linechart" target="_blank">
             <BLOG />
           </a>
         </SvgWrapper>
