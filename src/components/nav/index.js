@@ -14,16 +14,6 @@ import GITHUB from "@resources/images/common/GITHUB.svg";
 
 import { FlexLayout, svgHover } from "@resources/globalStyle";
 
-const SvgWrapper = styled(FlexLayout)`
-  ${svgHover}
-  a,
-  div,
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
 const Nav = () => {
   const { pathname } = window.location;
   const logoRef = useRef();
@@ -63,7 +53,7 @@ const Nav = () => {
         </SvgWrapper>
         <SvgWrapper justifyContent="center">
           {/* <a href="https://twentytwentyone.tistory.com" target="_blank"> */}
-          <a href="/project/linechart" target="_blank">
+          <a href="https://twentytwentyone.tistory.com" target="_blank">
             <BLOG />
           </a>
         </SvgWrapper>
@@ -81,3 +71,13 @@ const Nav = () => {
 };
 
 export default Nav;
+
+const SvgWrapper = styled(FlexLayout)`
+  ${svgHover}
+  a,
+  div,
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;

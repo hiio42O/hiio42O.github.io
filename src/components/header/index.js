@@ -8,18 +8,6 @@ import styled from "styled-components";
 import Nav from "@components/nav";
 import { FlexLayout } from "@resources/globalStyle";
 
-const HeaderLayout = styled(FlexLayout).attrs({
-  as: "header",
-})`
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 20px;
-  @media screen and (max-width: 660px) {
-    padding: 10px 20px;
-  }
-`;
-
 const Header = () => {
   return (
     <HeaderLayout>
@@ -29,3 +17,15 @@ const Header = () => {
 };
 
 export default Header;
+const HeaderLayout = styled(FlexLayout).attrs({
+  as: "header",
+})`
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  @media screen and (max-width: 660px) {
+    padding: 10px 20px;
+  }
+`;
