@@ -15,6 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "main.[hash].js",
     clean: true,
+    publicPath: "/",
   },
 
   module: {
@@ -27,6 +28,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpeg|jpg)$/,
+        use: ["file-loader"],
       },
       {
         test: /\.svg$/i,
@@ -53,6 +58,7 @@ module.exports = {
       "@pages": path.resolve(__dirname, "src", "pages"),
       "@resources": path.resolve(__dirname, "src", "resources"),
       "@components": path.resolve(__dirname, "src", "components"),
+      "@project": path.resolve(__dirname, "src", "project"),
     },
   },
   devServer: {

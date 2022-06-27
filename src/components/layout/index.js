@@ -9,18 +9,20 @@ import Header from "@components/header";
 
 const Section = styled.section`
   width: 100%;
-  height: ${(props) =>
-    props.height ? `calc(100% - ${props.height}px)` : "100%"};
+  height: calc(100% - ${(props) => props.padding + "px"});
+  padding: ${(props) => props.padding + "px"} 0 0 0;
+  margin: 0;
 `;
 
 const Layout = ({ children }) => {
-  const [sectionHeight, setSectionHeight] = useState(96);
+  const [sectionHeight, setSectionHeight] = useState(0);
   useEffect(() => {
     const resizeSectionHeight = () => {
       const header = document.querySelector("header");
       const headerH = header.clientHeight;
       setSectionHeight(headerH);
     };
+    resizeSectionHeight();
     window.addEventListener("resize", resizeSectionHeight);
     return () => {
       window.removeEventListener("resize", resizeSectionHeight);
@@ -29,7 +31,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <Section height={sectionHeight}>{children}</Section>
+      <Section padding={sectionHeight}>{children}</Section>
     </>
   );
 };
