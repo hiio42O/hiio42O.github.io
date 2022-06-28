@@ -25,6 +25,7 @@ const HeaderLayout = styled(FlexLayout).attrs({
   left: 0;
   padding: 20px;
   backdrop-filter: blur(5px);
+  z-index: 99;
   @media screen and (max-width: 660px) {
     padding: 10px 20px;
   }
