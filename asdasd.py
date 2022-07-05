@@ -70,9 +70,7 @@ for item in tqdm(result):
     zscode = item['zscode']
     if zscode not in data.keys():
         data[zscode] = []
-    if item['statId'] not in record:
-        data[zscode] += [item]
-        record+=[item['statId']]
+    data[zscode] += [item]
 for k,v in tqdm(data.items()):
     with open(f'.\\json\\{k}.json','w',encoding='utf-8') as f:
         json.dump(v,f)
