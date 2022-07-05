@@ -61,25 +61,19 @@ iter_size = int(totalCount/numRow) +1 if totalCount%numRow >0 else totalCount//n
 data = {}
 record = []
 result = json_data["response"]['body']['items']['item']
-for item in result:
+
+for i in tqdm(range(2,iter_size+1)):
+    resp = get_open_api_data()
+    json_data=xml_to_json(resp)
+    result += json_data["response"]['body']['items']['item']
+for item in tqdm(result):
     zscode = item['zscode']
     if zscode not in data.keys():
         data[zscode] = []
     if item['statId'] not in record:
         data[zscode] += [item]
-
-for i in tqdm(range(2,iter_size+1)):
-    resp = get_open_api_data()
-    json_data=xml_to_json(resp)
-    result = json_data["response"]['body']['items']['item']
-    if result:
-        for item in result:
-            zscode = item['zscode']
-            if zscode not in data.keys():
-                data[zscode] = [item]
-            if item['statId'] not in record:
-                data[zscode] += [item]
-for k,v in data.items():
+        record+=[item['statId']]
+for k,v in tqdm(data.items()):
     with open(f'.\\json\\{k}.json','w',encoding='utf-8') as f:
         json.dump(v,f)
 
