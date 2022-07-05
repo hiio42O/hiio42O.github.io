@@ -59,12 +59,13 @@ totalCount = json_data['response']['header']['totalCount']
 totalCount = int(totalCount)
 iter_size = int(totalCount/numRow) +1 if totalCount%numRow >0 else totalCount//numRow
 data = {}
+record = []
 result = json_data["response"]['body']['items']['item']
 for item in result:
     zscode = item['zscode']
     if zscode not in data.keys():
-        data[zscode] = [item]
-    else:
+        data[zscode] = []
+    if item['statId'] not in record:
         data[zscode] += [item]
 
 for i in tqdm(range(2,iter_size+1)):
@@ -76,7 +77,7 @@ for i in tqdm(range(2,iter_size+1)):
             zscode = item['zscode']
             if zscode not in data.keys():
                 data[zscode] = [item]
-            else:
+            if item['statId'] not in record:
                 data[zscode] += [item]
 for k,v in data.items():
     with open(f'.\\json\\{k}.json','w',encoding='utf-8') as f:
