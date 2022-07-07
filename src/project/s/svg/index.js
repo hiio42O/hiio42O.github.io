@@ -84,7 +84,7 @@ const SvgPractice = () => {
                 setArc((p) => ({ ...p, startDeg: e.target.value }))
               }
             />
-            <span>값:{arc.startDeg}</span>
+            <label>값:{arc.startDeg}</label>
           </div>
           <div>
             <label>끝 각도 </label>
@@ -97,7 +97,7 @@ const SvgPractice = () => {
                 setArc((p) => ({ ...p, endDeg: e.target.value }))
               }
             />
-            <span>값:{arc.endDeg}</span>
+            <label>값:{arc.endDeg}</label>
           </div>
           <div>
             <label>Stroke-dashoffset </label>
@@ -108,7 +108,7 @@ const SvgPractice = () => {
               value={strokeDashOffset}
               onChange={(e) => setStrokeDashOffset(e.target.value)}
             />
-            <span>값:{strokeDashOffset}</span>
+            <label>값:{strokeDashOffset}</label>
           </div>
           <div>
             <label>Stroke-dasharray </label>
@@ -119,7 +119,7 @@ const SvgPractice = () => {
               value={strokeDashArray}
               onChange={(e) => setStrokeDashArray(e.target.value)}
             />
-            <span>값:{strokeDashArray}</span>
+            <label>값:{strokeDashArray}</label>
           </div>
         </InputWrapper>
       </StyledSvgWrapper>
@@ -159,10 +159,10 @@ const SvgPractice = () => {
                 }))
               }
             />
-            <span>값:{text.options.fontSize}</span>
+            <label>값:{text.options.fontSize}</label>
           </div>
           <div>
-            <span>Text Anchor</span>
+            <label>Text Anchor</label>
             <div className="button-wrapper">
               <button
                 onClick={(e) =>
@@ -197,7 +197,7 @@ const SvgPractice = () => {
             </div>
           </div>
           <div>
-            <span>Alignment Baseline</span>
+            <label>Alignment Baseline</label>
             <div className="button-wrapper">
               <button
                 onClick={(e) =>
@@ -300,7 +300,7 @@ const InputWrapper = styled.div`
     width: calc(100% - 16px);
     margin-right: 16px;
     > label {
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
     > input,
     > textarea {
@@ -310,8 +310,17 @@ const InputWrapper = styled.div`
     }
   }
   > .content-title {
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: 700;
+  }
+  > div > .button-wrapper {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    > button {
+      font-size: 1rem;
+    }
   }
   @media screen and (max-width: 560px) {
     width: 50%;

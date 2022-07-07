@@ -30,3 +30,9 @@ a {
 a:active {
   color: black;
 }
+
+@media screen and (max-width: 560px) {
+  html {
+    font-size: 6px;
+  }
+}
