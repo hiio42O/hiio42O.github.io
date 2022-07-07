@@ -6,7 +6,6 @@ const SvgWrapper = ({ children }) => {
     const setViewBox = () => {
       const w = svgRef.current.getBoundingClientRect().width;
       const h = svgRef.current.clientHeight;
-      console.log(w);
       svgRef.current.setAttribute(
         "viewBox",
         `0 0 ${parseFloat(w)} ${parseFloat(h)}`

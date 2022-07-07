@@ -10,6 +10,7 @@ svg,
 }
 html {
   font-size: 10px;
+  font-family: Arial, sans-serif;
 }
 ul {
   list-style: none;
@@ -28,4 +29,10 @@ a {
 
 a:active {
   color: black;
+}
+
+@media screen and (max-width: 560px) {
+  html {
+    font-size: 6px;
+  }
 }

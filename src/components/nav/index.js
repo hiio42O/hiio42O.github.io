@@ -1,7 +1,7 @@
 // src/pages/main/index.js
 
 // modules
-import React, { Fragment, useEffect, useRef } from "react";
+import React, { useState, Fragment, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,9 @@ const Nav = () => {
   const { pathname } = window.location;
   const logoRef = useRef();
   const menuRef = useRef();
+  const [githubURL, setGithubURL] = useState(
+    "https://github.com/hiio42O/hiio42O.github.io.git"
+  );
   useEffect(() => {
     const svgs = document.querySelectorAll("svg");
     svgs.forEach((svg, i) => {
@@ -33,6 +36,22 @@ const Nav = () => {
       menuRef.current.insertBefore(logo, menuRef.current.firstChild);
     }
   }, []);
+  useEffect(() => {
+    const matchedPathName = pathname.match(/\/work\/[\w]+\/[\w]+/g);
+    console.log(matchedPathName);
+    if (matchedPathName && matchedPathName.length > 0) {
+      setGithubURL(
+        `https://github.com/hiio42O/hiio42O.github.io/tree/main/src/project/${matchedPathName[0].slice(
+          6
+        )}`
+      );
+    } else {
+      setGithubURL("https://github.com/hiio42O/hiio42O.github.io.git");
+    }
+    return () => {
+      setGithubURL("https://github.com/hiio42O/hiio42O.github.io.git");
+    };
+  }, [pathname]);
   return (
     <Fragment>
       <SvgWrapper ref={logoRef}>
@@ -58,10 +77,7 @@ const Nav = () => {
           </a>
         </SvgWrapper>
         <SvgWrapper justifyContent="flex-end">
-          <a
-            href="https://github.com/hiio42O/hiio42O.github.io.git"
-            target="_blank"
-          >
+          <a id="github-link" href={githubURL} target="_blank">
             <GITHUB />
           </a>
         </SvgWrapper>

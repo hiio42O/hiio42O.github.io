@@ -4,15 +4,19 @@
 import React from "react";
 
 // components
-import Layout from "@components/layout";
 import styled from "styled-components";
-
+import SkillSetItem from "@components/about/skillSet";
+import Meta from "@components/meta/Meta";
 // img
 import AboutImg from "@resources/images/about/Aboutimg.jpg";
+
+// meta
+import { metaSkillSet, meta } from "@pages/about/meta";
 
 const About = () => {
   return (
     <AboutWrapper>
+      <Meta data={meta} />
       <ImgWrapper>
         <img src={AboutImg} alt="about image" />
       </ImgWrapper>
@@ -20,15 +24,16 @@ const About = () => {
         <div id="about-name">조훈창 : Cho Hun Chang</div>
         <div id="about-slogan">AweSome Things with My Ideas</div>
         <div id="about-skill">
-          스킬
-          <hr />
           <ul>
-            <li>Python</li>
-            <li>JAVA</li>
-            <li>Javascript</li>
-            <li>Deep Learning</li>
-            <li>React</li>
-            <li>Rust</li>
+            {metaSkillSet.map((skill) => {
+              return (
+                <li key={Math.random()}>
+                  <SkillSetItem color={skill.color} per={skill.per}>
+                    {skill.text}
+                  </SkillSetItem>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </DescWrapper>
@@ -77,7 +82,7 @@ const DescWrapper = styled(Space)`
   gap: 16px;
   #about-name {
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 400;
     margin: 0 auto;
   }
   #about-slogan {
@@ -92,16 +97,28 @@ const DescWrapper = styled(Space)`
     content: '"';
   }
   #about-skill {
+    width: 100%;
     height: 100%;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 400;
     ul {
+      width: 100%;
       height: 100%;
-      display: grid;
-      column-gap: 16px;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
       li {
-        height: 50%;
-        min-height: 100px;
+        width: calc(100% / 3);
+        height: 160px;
+      }
+    }
+  }
+  @media screen and (max-width: 560px) {
+    #about-skill {
+      ul {
+        li {
+          height: 120px;
+        }
       }
     }
   }
