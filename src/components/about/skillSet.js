@@ -66,12 +66,12 @@ const StyledSvgWrapper = styled.div`
   diplay: flex;
   justify-content: center;
   align-items: center;
-  svg > path {
+  > svg > path {
     stroke-dashoffset: 0;
     stroke-dasharray: 1000;
     animation: svgStrokeProgress 3s;
   }
-  svg > text {
+  > svg > text {
     font-size: 1.6rem;
     fill: ${(props) => (props.textColor ? props.textColor : "black")};
     animation: svgTextOpacity 4s;
@@ -98,11 +98,6 @@ const StyledSvgWrapper = styled.div`
     }
     to {
       stroke-dashoffset: 0;
-    }
-  }
-  @media screen and (max-width: 560px) {
-    svg > text {
-      font-size: 1.2rem;
     }
   }
 `;

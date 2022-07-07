@@ -1,3 +1,6 @@
+// src\project\s\svg\components\text.js
+
+// modules
 import React, { useRef, forwardRef, useEffect, useState } from "react";
 
 const Text = forwardRef(({ x, y, children, config = {} }, ref) => {
