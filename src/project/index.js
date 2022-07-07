@@ -1,3 +1,5 @@
+// src/project/index.js
+
 import * as a from "@project/a";
 import * as b from "@project/b";
 import * as c from "@project/c";
@@ -60,5 +62,5 @@ const Project = {
   y: _unpack_(y),
   z: _unpack_(z),
 };
-
+console.log(Project);
 export default Project;

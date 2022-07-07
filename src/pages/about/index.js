@@ -12,29 +12,27 @@ import AboutImg from "@resources/images/about/Aboutimg.jpg";
 
 const About = () => {
   return (
-    <Layout>
-      <AboutWrapper>
-        <ImgWrapper>
-          <img src={AboutImg} alt="about image" />
-        </ImgWrapper>
-        <DescWrapper>
-          <div id="about-name">조훈창 : Cho Hun Chang</div>
-          <div id="about-slogan">AweSome Things with My Ideas</div>
-          <div id="about-skill">
-            스킬
-            <hr />
-            <ul>
-              <li>Python</li>
-              <li>JAVA</li>
-              <li>Javascript</li>
-              <li>Deep Learning</li>
-              <li>React</li>
-              <li>Rust</li>
-            </ul>
-          </div>
-        </DescWrapper>
-      </AboutWrapper>
-    </Layout>
+    <AboutWrapper>
+      <ImgWrapper>
+        <img src={AboutImg} alt="about image" />
+      </ImgWrapper>
+      <DescWrapper>
+        <div id="about-name">조훈창 : Cho Hun Chang</div>
+        <div id="about-slogan">AweSome Things with My Ideas</div>
+        <div id="about-skill">
+          스킬
+          <hr />
+          <ul>
+            <li>Python</li>
+            <li>JAVA</li>
+            <li>Javascript</li>
+            <li>Deep Learning</li>
+            <li>React</li>
+            <li>Rust</li>
+          </ul>
+        </div>
+      </DescWrapper>
+    </AboutWrapper>
   );
 };
 

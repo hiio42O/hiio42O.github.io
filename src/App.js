@@ -1,8 +1,8 @@
-// App.js
+// src/App.js
 
 // modules
-import React, { Component, Fragment } from "react";
-import { Routes, Route, useRoutes } from "react-router";
+import React, { Fragment } from "react";
+import { Routes, Route } from "react-router";
 
 // css
 import "@resources/css/app.css";
@@ -11,30 +11,54 @@ import "@resources/css/app.css";
 import Main from "@pages/main";
 import About from "@pages/about";
 import Work from "@pages/work";
-import projectModule from "@project";
+
+// components
+import Layout from "@components/layout";
+
+// project
+import Project from "@project";
 
 const App = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Main />}></Route>
-      <Route exact path="/about" element={<About />}></Route>
-      <Route exact path="/work" element={<Work />}></Route>
+      <Route
+        exact
+        path="/about"
+        element={
+          <Layout>
+            <About />
+          </Layout>
+        }
+      ></Route>
+      <Route
+        exact
+        path="/work"
+        element={
+          <Layout>
+            <Work />
+          </Layout>
+        }
+      ></Route>
 
-      {Object.keys(projectModule).map((char) => {
-        let path = `/work/${char}`;
-        // let path = `/project/${char}/${key.toLowerCase()}`;
-        const components = projectModule[char];
+      {Object.keys(Project).map((alphabet) => {
+        let path = `/work/${alphabet}`;
+        const components = Project[alphabet];
         return (
           <Fragment key={Math.random()}>
-            {Object.keys(components).map((key) => {
-              const ProjectComponent = components[key];
-              path += `/${key.toLowerCase()}`;
+            {Object.keys(components).map((name) => {
+              const ProjectComponent = components[name];
+              path += `/${name.toLowerCase()}`;
               return (
                 <Route
                   key={Math.random()}
                   exact
                   path={path}
-                  element={<ProjectComponent />}
+                  element={
+                    <Layout>
+                      <ProjectComponent />
+                    </Layout>
+                  }
                 />
               );
             })}
