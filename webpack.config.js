@@ -1,6 +1,7 @@
 // webpack.config.js
 
 // module import
+
 const path = require("path");
 const webpack = require("webpack");
 require("dotenv").config();
@@ -8,6 +9,7 @@ require("dotenv").config();
 // plugins
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CnameWebpackPlugin = require("cname-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: path.resolve(__dirname, "index.js"),
@@ -51,6 +53,9 @@ module.exports = {
       domain: "hiio420.com",
     }),
     new webpack.DefinePlugin({}),
+    new CopyPlugin({
+      patterns: [{ from: "robots.txt", to: "robots.txt" }],
+    }),
   ],
   resolve: {
     extensions: [".js", ".json", ".wasm"],

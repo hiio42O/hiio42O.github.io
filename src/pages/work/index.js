@@ -3,10 +3,15 @@
 // modules
 import React, { Fragment, useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 // project
 import Project from "@project";
-import styled from "styled-components";
+
+// components
+
+import { meta } from "@pages/work/meta";
+import Meta from "@components/meta/Meta";
 
 const Work = () => {
   const FilterdProject = Object.keys(Project)
@@ -63,6 +68,7 @@ const Work = () => {
   });
   return (
     <WorkWrapper>
+      <Meta data={meta} />
       <ProjectNavigation>{ProjectNavigationItems}</ProjectNavigation>
       <Title>Projects List</Title>
       <ProjectList>{ProjectListItems}</ProjectList>
@@ -103,12 +109,12 @@ const ProjectList = styled(Space)`
   gap: 16px;
 
   .project-list-title {
-    font-size: 1.8rme;
+    font-size: 1.8rem;
     font-weight: 600;
     padding: 4px 8px;
   }
   .project-list-item {
-    font-size: 1.6rme;
+    font-size: 1.6rem;
     font-weight: 400;
     padding: 0 24px 24px 24px;
     display: flex;
@@ -116,6 +122,6 @@ const ProjectList = styled(Space)`
     gap: 8px;
   }
   .selected {
-    background-color: rgba(150, 150, 150, 0.1);
+    background-color: rgba(200, 200, 200, 0.1);
   }
 `;
