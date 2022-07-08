@@ -1,1 +1,1 @@
-export { default as svg } from "@project/s/svg";
+export { default as svgDemo } from "@project/s/svgDemo";

@@ -62,5 +62,4 @@ const Project = {
   y: _unpack_(y),
   z: _unpack_(z),
 };
-console.log(Project);
 export default Project;
