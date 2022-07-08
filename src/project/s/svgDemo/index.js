@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { SvgWrapper, Text, Arc } from "@project/s/svg/components";
+import { SvgWrapper, Text, Arc } from "@project/s/svgDemo/components";
 import Meta from "@components/meta/Meta.js";
-import { meta } from "@project/s/svg/meta.js";
+import { meta } from "@project/s/svgDemo/meta.js";
 const SvgPractice = () => {
   const [strokeDashOffset, setStrokeDashOffset] = useState(0);
   const [strokeDashArray, setStrokeDashArray] = useState(1000);
@@ -260,12 +260,6 @@ const StyledSvgWrapper = styled.div`
     stroke-dasharray: ${(props) => {
       return props.strokeDashArray ? props.strokeDashArray : 1000;
     }};
-    // animation: svgStrokeProgress 3s
-    //   ${(props) => (props.animate ? "infinite" : "")};
-  }
-  svg > text {
-    // animation: svgTextOpacity 3s ${(props) =>
-      props.animate ? "infinite" : ""};
   }
 
   @keyframes svgTextOpacity {

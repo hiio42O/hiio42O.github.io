@@ -44,6 +44,7 @@ const App = () => {
       {Object.keys(Project).map((alphabet) => {
         let path = `/work/${alphabet}`;
         const components = Project[alphabet];
+        if (Object.keys(Project[alphabet]).includes("default")) return null;
         return (
           <Fragment key={Math.random()}>
             {Object.keys(components).map((name) => {

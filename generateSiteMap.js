@@ -32,7 +32,7 @@ const generateSiteMap = () => {
 const generateXmlString = (sitemaps) => {
   let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
   `;
-  xmlString += `\n<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+  xmlString += `\n<urlset>`;
   sitemaps.map((sitemap) => {
     xmlString += `\n<url>`;
     xmlString += `\n\t<loc>https://hiio420.com${sitemap}</loc>`;
@@ -40,7 +40,7 @@ const generateXmlString = (sitemaps) => {
       new Date().toISOString().slice(0, 19) + "+00:00"
     }</lastmod>`;
     xmlString += `\n\t<changefreq>monthly</changefreq>`;
-    xmlString += `\n\t<priority>0.6400</priority>`;
+    xmlString += `\n\t<changefreq>0.6400</changefreq>`;
     xmlString += `\n</url>`;
   });
   xmlString += `\n</urlset>`;

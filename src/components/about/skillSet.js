@@ -2,7 +2,7 @@
 
 // modules
 import React, { useEffect, useState, useRef } from "react";
-import { Arc, Text, SvgWrapper } from "@project/s/svg/components";
+import { Arc, Text, SvgWrapper } from "@project/s/svgDemo/components";
 
 // components
 import styled from "styled-components";

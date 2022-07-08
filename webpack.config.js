@@ -15,7 +15,7 @@ module.exports = {
   entry: path.resolve(__dirname, "index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "main.[hash].js",
+    filename: "main.[chunkhash].js",
     clean: true,
     publicPath: "/",
   },
@@ -71,4 +71,13 @@ module.exports = {
     historyApiFallback: true,
   },
   devtool: "source-map",
+  optimization: {
+    splitChunks: {
+      minSize: 10000,
+      maxSize: 250000,
+    },
+  },
+  performance: {
+    hints: false,
+  },
 };
