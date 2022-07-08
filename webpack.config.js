@@ -52,7 +52,9 @@ module.exports = {
     new CnameWebpackPlugin({
       domain: "hiio420.com",
     }),
-    new webpack.DefinePlugin({}),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
     new CopyPlugin({
       patterns: [{ from: "robots.txt", to: "robots.txt" }],
     }),
@@ -70,7 +72,7 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-  devtool: "source-map",
+  devtool: "inline-source-map",
   optimization: {
     splitChunks: {
       minSize: 10000,

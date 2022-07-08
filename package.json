@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --config webpack.config.dev.js --open",
     "postbuild": "react-snap",
     "build": "webpack . --mode production",
-    "deploy": "npm run build  && npm run sitemap && gh-pages -d build",
+    "deploy": "npm run sitemap && gh-pages -d build",
     "sitemap": "babel-node ./generateSiteMap.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -46,13 +46,5 @@
     "react-router-dom": "^6.3.0",
     "react-router-sitemap-generator": "^0.0.8",
     "styled-components": "^5.3.5"
-  },
-  "reactSnap": {
-    "concurrency": 4,
-    "puppeteerArgs": [
-      "--use-gl=egl",
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ]
   }
 }
