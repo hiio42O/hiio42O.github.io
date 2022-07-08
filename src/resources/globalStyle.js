@@ -31,3 +31,19 @@ export const svgHover = css`
     stroke: red;
   }
 `;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const Title = styled.div`
+  font-size: ${(props) => (props.fontSize ? props.fontSize : "2.4rem")};
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
+`;
+
+export const HLine = styled.div`
+  width: ${(props) => (props.width ? props.width : "100%")};
+  height: ${(props) => (props.height ? props.height : "1px")};
+  background-color: ${(props) => (props.color ? props.color : "black")};
+`;
