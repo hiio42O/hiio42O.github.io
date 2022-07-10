@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, forwardRef } from "react";
+import { useEffect, useState, useCallback, forwardRef } from "react";
 export const { navigator } = window;
 
 export const useMap = (
