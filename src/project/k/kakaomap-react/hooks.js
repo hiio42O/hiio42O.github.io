@@ -197,17 +197,18 @@ export const getEvStations = (kakao, coord, distance = 3) => {
           ? resp[0].road_address.region_1depth_name
           : resp[0].address.region_1depth_name;
         const code = sido_code[region_1depth_name];
-        console.log(code);
         apiEvStations(code)
           .then((resp) => {
-            resp = resp.reduce((prev, r) => {
-              const d = coordToDistance(coord.lat, coord.lng, r.lat, r.lng);
-              if (d <= distance) {
-                return [...prev, { ...r, d: d }];
-              } else {
-                return prev;
-              }
-            }, []);
+            resp = resp
+              .reduce((prev, r) => {
+                const d = coordToDistance(coord.lat, coord.lng, r.lat, r.lng);
+                if (d <= distance) {
+                  return [...prev, { ...r, d: d }];
+                } else {
+                  return prev;
+                }
+              }, [])
+              .sort((a, b) => a.d - b.d);
             res(resp);
           })
           .catch((err) => rej(err));
