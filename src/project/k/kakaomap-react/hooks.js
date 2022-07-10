@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback, forwardRef } from "react";
-export const { kakao, navigator } = window;
-export const geocoder = new kakao.maps.services.Geocoder();
+export const { navigator } = window;
 
 export const useMap = (
+  kakao,
   init,
   target,
   options = {
@@ -14,6 +14,7 @@ export const useMap = (
   useEffect(() => {
     getCurrentPosition().then((coord) => {
       const { lat, lng } = coord;
+
       if (lat === 0 && lng === 0) return;
       let mapOption = {
         center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
@@ -64,12 +65,12 @@ export const useAddMarkerList = (initMarkerList) => {
   return [markerList, onSetMarkerList];
 };
 
-export const makeMarker = ({ lat, lng, imageSrc }) => {
+export const makeMarker = ({ kakao, lat, lng, imageSrc }) => {
   const imageSize = new kakao.maps.Size(64, 69);
   const imageOption = { offset: new kakao.maps.Point(32, 34.5) };
 
   const markerImage = imageSrc
-    ? new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+    ? new maps.MarkerImage(imageSrc, imageSize, imageOption)
     : null;
   const markerPosition = new kakao.maps.LatLng(lat, lng);
 
@@ -107,7 +108,10 @@ export const getCurrentPosition = () => {
   });
 };
 
-export const getDetailCoordToAddr = ({ lat, lng }) => {
+export const getDetailCoordToAddr = ({ kakao, lat, lng }) => {
+  if (!kakao) return;
+  const geocoder = new kakao.maps.services.Geocoder();
+
   return new Promise((res, rej) => {
     if (lat === 0 && lng === 0) {
       rej("latLng is 0,0");
@@ -153,7 +157,6 @@ export const apiEvStationStatus = (statId) => {
         method: "GET",
         headers: {
           accept: "application/vnd.github.v3.raw",
-          authorization: `token ${process.env.GITHUB_TOKEN}`,
         },
       }
     )
@@ -175,38 +178,37 @@ export const apiEvStations = (code) => {
         method: "GET",
         headers: {
           accept: "application/vnd.github.v3.raw",
-          authorization: `token ${process.env.GITHUB_TOKEN}`,
         },
       }
     )
       .then((resp) => resp.json())
       .then((resp) => res(resp))
-      .catch((err) => res(err));
+      .catch((err) => rej(err));
     return;
   });
 };
 
-export const getEvStations = (coord, distance = 3) => {
+export const getEvStations = (kakao, coord, distance = 3) => {
   return new Promise((res, rej) => {
-    getDetailCoordToAddr(coord)
+    getDetailCoordToAddr({ ...coord, kakao: kakao })
       .then((resp) => {
-        const addr = resp[0].road_address.address_name;
-        apiAddrToCode(addr)
-          .then((r) => r.results.juso[0].admCd.slice(0, 2))
-          .then((code) => {
-            apiEvStations(code)
-              .then((resp) => {
-                resp = resp.reduce((prev, r) => {
-                  const d = coordToDistance(coord.lat, coord.lng, r.lat, r.lng);
-                  if (d <= distance) {
-                    return [...prev, { ...r, d: d }];
-                  } else {
-                    return prev;
-                  }
-                }, []);
-                res(resp);
-              })
-              .catch((err) => rej(err));
+        console.log(resp[0]);
+        const region_1depth_name = resp[0].road_address
+          ? resp[0].road_address.region_1depth_name
+          : resp[0].address.region_1depth_name;
+        const code = sido_code[region_1depth_name];
+        console.log(code);
+        apiEvStations(code)
+          .then((resp) => {
+            resp = resp.reduce((prev, r) => {
+              const d = coordToDistance(coord.lat, coord.lng, r.lat, r.lng);
+              if (d <= distance) {
+                return [...prev, { ...r, d: d }];
+              } else {
+                return prev;
+              }
+            }, []);
+            res(resp);
           })
           .catch((err) => rej(err));
       })
@@ -236,4 +238,24 @@ export const coordToDistance = (srcLat, srcLng, targetLat, targetLng) => {
 export const degToRad = (deg) => {
   deg = Number(deg);
   return (deg * Math.PI) / 180.0;
+};
+
+export const sido_code = {
+  서울: 11,
+  부산: 26,
+  대구: 27,
+  인천: 28,
+  광주: 29,
+  대전: 30,
+  울산: 31,
+  세종특별자치시: 36,
+  경기: 41,
+  강원: 42,
+  충북: 43,
+  충남: 44,
+  전북: 45,
+  전남: 46,
+  경북: 47,
+  경남: 48,
+  제주특별자치도: 50,
 };

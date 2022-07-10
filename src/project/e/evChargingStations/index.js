@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  kakao,
   useMap,
   makeMarker,
   getEvStations,
@@ -9,21 +8,27 @@ import {
 } from "@project/k/kakaomap-react/hooks";
 import { Wrapper, Title, HLine } from "@resources/globalStyle";
 import styled from "styled-components";
+import { getDetailCoordToAddr } from "../../k/kakaomap-react/hooks";
 
 const EvChargingStation = () => {
-  const [kakaoMap, currentCoord, setCurrentCoord] = useMap(null, "#kakaoMap", {
-    level: 2,
-  });
+  const { kakao } = window;
+  const [kakaoMap, currentCoord, setCurrentCoord] = useMap(
+    kakao,
+    null,
+    "#kakaoMap",
+    {
+      level: 2,
+    }
+  );
   const [evChargeList, setEvChargeList] = useState([]);
   const [markerList, setMarkerList] = useAddMarkerList([]);
   useEffect(() => {
     const { lat, lng } = currentCoord;
     if (lat === 0 && lng === 0) return;
-    getEvStations(currentCoord, 2).then((result) => {
+    getEvStations(kakao, currentCoord, 3).then((result) => {
       setEvChargeList(result);
-      console.log(result);
       setMarkerList(
-        result.map((r) => makeMarker(r)),
+        result.map((r) => makeMarker({ ...r, kakao: kakao })),
         kakaoMap
       );
     });
@@ -34,7 +39,7 @@ const EvChargingStation = () => {
     markerList.map((marker, index) => {
       kakao.maps.event.addListener(marker, "click", (e) => {
         console.log(evChargeList[index]);
-        apiEvStationStatus(evChargeList[index].statId.slice(0, 3)).then(
+        apiEvStationStatus(evChargeList[index].statId.slice(0, 6)).then(
           (resp) =>
             console.log(
               resp.filter((r) => r.statId === evChargeList[index].statId)
@@ -43,6 +48,18 @@ const EvChargingStation = () => {
       });
     });
   }, [markerList, evChargeList]);
+
+  useEffect(() => {
+    if (!kakaoMap) return;
+    kakao.maps.event.addListener(kakaoMap, "click", (e) => {
+      getDetailCoordToAddr({
+        kakao: kakao,
+        lat: e.latLng.getLat(),
+        lng: e.latLng.getLng(),
+      }).then((r) => console.log(r));
+      setCurrentCoord({ lat: e.latLng.getLat(), lng: e.latLng.getLng() });
+    });
+  }, [kakaoMap]);
 
   return (
     <Wrapper>
