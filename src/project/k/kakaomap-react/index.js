@@ -9,9 +9,10 @@ import { Wrapper, Title, HLine } from "@resources/globalStyle";
 import styled from "styled-components";
 
 const KakaoMapReact = () => {
-  const [kakaoMap, currentCoord] = useMap(null, "#kakaoMap");
+  const { kakao } = window;
+  const [kakaoMap, currentCoord] = useMap(kakao, null, "#kakaoMap");
   useEffect(() => {
-    const marker = makeMarker({ ...currentCoord });
+    const marker = makeMarker({ ...currentCoord, kakao: kakao });
     marker.setMap(kakaoMap);
   }, [kakaoMap, currentCoord]);
 

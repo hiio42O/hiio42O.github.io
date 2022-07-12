@@ -55,20 +55,20 @@ const Nav = () => {
   return (
     <Fragment>
       <SvgWrapper ref={logoRef}>
-        <Link to="/">
+        <a href="/">
           <HIIO420 />
-        </Link>
+        </a>
       </SvgWrapper>
       <FlexLayout gap="32px" ref={menuRef}>
         <SvgWrapper>
-          <Link to="/about">
+          <a href="/about">
             <ABOUT />
-          </Link>
+          </a>
         </SvgWrapper>
         <SvgWrapper justifyContent="center">
-          <Link to="/work">
+          <a href="/work">
             <WORK />
-          </Link>
+          </a>
         </SvgWrapper>
         <SvgWrapper justifyContent="center">
           {/* <a href="https://twentytwentyone.tistory.com" target="_blank"> */}

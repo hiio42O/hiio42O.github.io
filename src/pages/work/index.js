@@ -93,6 +93,7 @@ const ProjectNavigation = styled.div`
   border-radius: 8px;
   padding: 4px;
   background-color: rgba(180, 180, 180, 0.3);
+  cursor: pointer;
 `;
 const Space = styled.div`
   width: calc(100% - 120px);

@@ -35,11 +35,15 @@ export const svgHover = css`
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 export const Title = styled.div`
   font-size: ${(props) => (props.fontSize ? props.fontSize : "2.4rem")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "700")};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  padding: ${(props) => (props.padding ? props.padding : "0")};
+  display: ${(props) => (props.display ? props.display : "black")};
 `;
 
 export const HLine = styled.div`
