@@ -1,5 +1,3 @@
-// src/pages/main/index.js
-
 // modules
 import React, { useState, Fragment, useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -38,7 +36,6 @@ const Nav = () => {
   }, []);
   useEffect(() => {
     const matchedPathName = pathname.match(/\/work\/[\w]+\/[\w]+/g);
-    console.log(matchedPathName);
     if (matchedPathName && matchedPathName.length > 0) {
       setGithubURL(
         `https://github.com/hiio42O/hiio42O.github.io/tree/main/src/project/${matchedPathName[0].slice(

@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 
 export const FlexLayout = styled.div`
   display: flex;
-  flex-direction:${(props) => (props.direction ? props.direction : "row")}
+  flex-direction: ${(props) => (props.direction ? props.direction : "row")};
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "flex-start"};
   align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};

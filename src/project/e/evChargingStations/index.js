@@ -65,8 +65,6 @@ const EvChargingStation = () => {
   useEffect(() => {
     if (!kakaoMap) return;
     if (stationState.length > 0) {
-      console.log(stationState[0]);
-
       kakaoMap.panTo(
         new kakao.maps.LatLng(stationState[0].lat, stationState[0].lng)
       );
@@ -75,6 +73,7 @@ const EvChargingStation = () => {
   return (
     <Wrapper>
       <Title fontSize={"2rem"}>전기차 충전소 정보</Title>
+      <span>공공데이터를 이용한 개인 포트폴리오용 데모 페이지입니다.</span>
       <HLine />
       <KakaoMapWrapper id="kakaoMap">
         <StationsList
