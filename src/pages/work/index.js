@@ -1,7 +1,7 @@
 // src/pages/work/index.js
 
 // modules
-import React, { Fragment, useState, useCallback, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -81,7 +81,7 @@ const Work = () => {
     <WorkWrapper>
       <Meta data={meta} />
       <ProjectNavigation>{ProjectNavigationItems}</ProjectNavigation>
-      <Title>Projects List</Title>
+      <div className="cont-title">PROJECT LIST</div>
       <ProjectList>{ProjectListItems}</ProjectList>
     </WorkWrapper>
   );
@@ -110,11 +110,7 @@ const Space = styled.div`
   width: calc(100% - 120px);
   padding: 0 60px;
 `;
-const Title = styled(Space)`
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-`;
+
 const ProjectList = styled(Space)`
   display: flex;
   flex-direction: column;

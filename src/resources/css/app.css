@@ -31,6 +31,15 @@ a:active {
   color: black;
 }
 
+/* common class */
+.cont-title{
+  padding: 0 60px;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+/* media */
+
 @media screen and (max-width: 560px) {
   html {
     font-size: 6px;

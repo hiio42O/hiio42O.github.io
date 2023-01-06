@@ -49,6 +49,7 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-router-sitemap-generator": "^0.0.8",
+    "recoil": "^0.7.6",
     "redux": "^4.2.0",
     "redux-cookie": "^0.5.9",
     "redux-persist": "^6.0.0",

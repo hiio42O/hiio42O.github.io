@@ -32,17 +32,17 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpeg|jpg)$/,
+        test: /\.(png|jpeg|jpg|svg)$/,
         use: ["file-loader"],
       },
-      {
-        test: /\.svg$/i,
-        loader: "@svgr/webpack",
-        options: {
-          name: "[path][name].[ext]",
-          outputPath: "resources/images",
-        },
-      },
+      // {
+      //   test: /\.svg$/i,
+      //   loader: "@svgr/webpack",
+      //   options: {
+      //     name: "[path][name].[ext]",
+      //     outputPath: "resources/images",
+      //   },
+      // },
     ],
   },
   plugins: [
@@ -67,6 +67,7 @@ module.exports = {
       "@components": path.resolve(__dirname, "src", "components"),
       "@project": path.resolve(__dirname, "src", "project"),
       "@Redux": path.resolve(__dirname, "src", "Redux"),
+      "@Widget": path.resolve(__dirname, "src", "Widget"),
     },
   },
   devServer: {

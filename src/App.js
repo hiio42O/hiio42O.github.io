@@ -17,6 +17,10 @@ import Layout from "@components/layout";
 
 // project
 import Project from "@project";
+// Widget
+import Widget from "@Widget";
+import Weather from "@Widget/Weather";
+import WeatherDisplay from "@Widget/Weather/WeatherDisplay";
 
 const App = () => {
   return (
@@ -66,6 +70,26 @@ const App = () => {
           </Fragment>
         );
       })}
+      <Route
+        path="/widget"
+        element={
+          <Layout>
+            <Widget />
+          </Layout>
+        }
+      ></Route>
+      <Route
+        path="/widget/weather"
+        element={
+          <Layout>
+            <Weather />
+          </Layout>
+        }
+      ></Route>
+      <Route
+        path="/widget/weather/display"
+        element={<WeatherDisplay />}
+      ></Route>
     </Routes>
   );
 };
