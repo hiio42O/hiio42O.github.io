@@ -43,12 +43,15 @@
     "@reduxjs/toolkit": "^1.8.3",
     "dotenv": "^16.0.1",
     "fs": "^0.0.1-security",
+    "js-cookie": "^3.0.1",
     "react": "^18.1.0",
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-router-sitemap-generator": "^0.0.8",
     "redux": "^4.2.0",
+    "redux-cookie": "^0.5.9",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.5"
   }
 }

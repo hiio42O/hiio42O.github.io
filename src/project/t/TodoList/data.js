@@ -1,10 +1,3 @@
-export const structure = {
-  id: "",
-  title: "",
-  contents: "",
-  regDate: new Date(),
-};
-
 export const dummy = [
   {
     id: 1,

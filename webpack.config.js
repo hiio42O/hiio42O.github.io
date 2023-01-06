@@ -66,6 +66,7 @@ module.exports = {
       "@resources": path.resolve(__dirname, "src", "resources"),
       "@components": path.resolve(__dirname, "src", "components"),
       "@project": path.resolve(__dirname, "src", "project"),
+      "@Redux": path.resolve(__dirname, "src", "Redux"),
     },
   },
   devServer: {

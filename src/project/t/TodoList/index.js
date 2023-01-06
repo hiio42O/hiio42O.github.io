@@ -1,52 +1,84 @@
 // src/project/t/TodoList/index.js
 
-import React, { useCallback } from "react";
-
-import { useSelector, useDispatch } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Meta from "@components/meta/Meta";
 
 import { meta } from "@project/t/TodoList/meta";
-import { Section, TodoItem, TodoWrapper } from "@project/t/TodoList/style";
-// import { dummy } from "@project/t/TodoList/data";
 import { dateToString } from "@project/t/TodoList/components/date";
-import { toggle } from "@project/t/TodoList/components/reduxContainer";
-import { Wrapper, Title, HLine } from "@resources/globalStyle";
 
+import { Wrapper, Title, HLine, Section } from "@resources/globalStyle";
+
+import { useSelector, useDispatch } from "react-redux";
+import { onCreate, onUpdate, onDelete } from "@Redux/TodoList";
+import axios from "axios";
 const TodoList = ({}) => {
-  const dummy = useSelector((state) => state.TodoListReducer);
+  const TodoListData = useSelector((state) => state.TodoListReducer);
+  const [todoItem, setTodoItem] = useState({
+    id: "",
+    title: "",
+    contents: "",
+    done: false,
+  });
   const dispatch = useDispatch();
-  const onToggle = useCallback(
+  const onItemAdd = useCallback(() => {
+    dispatch(onCreate(todoItem));
+  }, [dispatch, todoItem]);
+  const onItemUpdate = useCallback(() => {
+    dispatch(onUpdate());
+  }, [dispatch]);
+  const onItemDelete = useCallback(
     (idx) => {
-      dispatch(toggle(idx));
+      dispatch(onDelete(idx));
     },
     [dispatch]
   );
+
   return (
     <Wrapper>
       <Meta data={meta} />
       <Section>
         <Title>Todo List For Self</Title>
         <HLine />
-        <TodoWrapper>
-          {dummy.map((d, i) => {
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "80%",
+            gap: "16px",
+            margin: "20px 0 0 0",
+          }}
+        >
+          <div>
+            <input
+              type="text"
+              onChange={(e) =>
+                setTodoItem((p) => ({ ...p, title: e.target.value }))
+              }
+              value={todoItem.title}
+            />
+            <button onClick={onItemAdd}>등록</button>
+          </div>
+          {TodoListData.map((d, idx) => {
             return (
-              <TodoItem key={Math.random()}>
+              <div key={Math.random()} style={{ display: "flex", gap: "8px" }}>
                 <div>{d.id}</div>
                 <div>{d.title}</div>
                 <div>{d.contents}</div>
                 <div>{dateToString(d.regDate)}</div>
-                <input
-                  type="checkbox"
-                  defaultChecked={d.done}
-                  onChange={(e) => {
-                    onToggle(i);
+                <input type="checkbox" defaultChecked={d.done} />
+                <button onClick={onItemUpdate}>수정</button>
+                <button
+                  onClick={(e) => {
+                    onItemDelete(idx);
                   }}
-                />
-              </TodoItem>
+                >
+                  삭제
+                </button>
+              </div>
             );
           })}
-        </TodoWrapper>
+        </div>
       </Section>
     </Wrapper>
   );

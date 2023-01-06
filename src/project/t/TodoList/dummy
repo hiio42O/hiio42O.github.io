@@ -1,0 +1,57 @@
+// src/project/t/TodoList/index.js
+
+import React, { useCallback, useEffect, useRef } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+
+import Meta from "@components/meta/Meta";
+
+import { meta } from "@project/t/TodoList/meta";
+import { dummy } from "@project/t/TodoList/data";
+import { dateToString } from "@project/t/TodoList/components/date";
+import {} from "@Redux/TodoList";
+import { Wrapper, Title, HLine } from "@resources/globalStyle";
+import { ToggleBtn } from "@project/b/ButtonCollection/components/ToggleBtn";
+const TodoList = ({}) => {
+  const WrapperRef = useRef();
+
+  const items = useSelector((state) => state.TodoListReducer).map((el, i) => {
+    if (el.id) {
+      return (
+        <div style={{ backgroundColor: "#aaa", padding: "8px" }}>
+          <ToggleBtn
+            defaultChecked={el.done}
+            id={`toggle-btn-${i}`}
+            radius={12}
+            onChange={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggle(i);
+            }}
+          />
+          <div>{el.id}</div>
+          <div>{el.title}</div>
+          <div>{el.contents}</div>
+        </div>
+      );
+    } else {
+      return (
+        <EmptyItem>
+          <textarea></textarea>
+        </EmptyItem>
+      );
+    }
+  });
+
+  return (
+    <Wrapper ref={WrapperRef}>
+      <Meta data={meta} />
+      <Section>
+        <Title>Todo List For Self</Title>
+        <HLine />
+      </Section>
+    </Wrapper>
+  );
+};
+
+export default TodoList;

@@ -4,45 +4,46 @@ import { FlexLayout } from "@resources/globalStyle";
 export const Section = styled.div`
   padding: 24px;
 `;
-export const TodoWrapper = styled(FlexLayout)`
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 16px;
-`;
-export const TodoItem = styled(FlexLayout)`
-  width: 80%;
-  gap: 8px;
-  border-radius: 16px;
-  box-shadow: 1px 1px 1px 1px rgba(200, 200, 200, 0.3),
-    -1px -1px 1px 1px rgba(150, 150, 150, 0.3);
-  padding: 8px 16px;
-  font-size: 1.2rem;
-  align-items: center;
+
+export const AddBtnWrapper = styled.div`
+  position: fixed;
+  width: 30%;
+  max-width: 128px;
+  height: 36px;
+  border-radius: 36px;
+  box-shadow: 0px 0px 1px 1px rgba(200, 200, 200, 0.5);
+  bottom: 36px;
+  left: 50%;
+  transform: translate(-50%);
   cursor: pointer;
-  > div:nth-child(1) {
-    width: 8px;
+  > span {
+    position: absolute;
+    background-color: black;
+    display: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  > div:nth-child(2) {
-    width: 128px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: 600;
+  > span:nth-child(1) {
+    width: 2px;
+    height: 24px;
   }
-  > div:nth-child(3) {
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  > div:nth-child(4) {
-    width: 64px;
-  }
-  > div:nth-child(5) {
-    width: 12px;
+  > span:nth-child(2) {
+    height: 2px;
+    width: 24px;
   }
   :hover {
-    background-color: rgba(165, 165, 165, 0.2);
+    box-shadow: 0px 0px 1px 1px rgba(200, 200, 200, 0.7);
+    background-color: rgba(250, 250, 250, 0.7);
+  }
+`;
+
+export const EmptyItem = styled.div`
+  > textarea {
+    padding: 0;
+    margin: 0;
+    height: 160px;
+    width: 100%;
+    resize: none;
   }
 `;

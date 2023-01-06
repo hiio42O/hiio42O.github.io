@@ -33,7 +33,18 @@ const Work = () => {
           {Object.keys(Project[alpha]).map((key) => {
             return (
               <Link to={`${path}/${key.toLowerCase()}`} key={Math.random()}>
-                <span>{key}</span>
+                <span
+                  style={{
+                    backgroundColor: `rgba(
+    ${randint(80, 130)},
+    ${randint(80, 130)},
+    ${randint(80, 130)},
+    ${Math.random()}
+  )`,
+                  }}
+                >
+                  {key}
+                </span>
               </Link>
             );
           })}
@@ -122,7 +133,17 @@ const ProjectList = styled(Space)`
     flex-wrap: wrap;
     gap: 8px;
   }
+  .project-list-item > a > span {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 8px;
+    color: black;
+  }
   .selected {
     background-color: rgba(200, 200, 200, 0.1);
   }
 `;
+
+const randint = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};

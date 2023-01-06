@@ -1,17 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-export const ToggleBtn = ({ radius, onChange = () => {} }) => {
+export const ToggleBtn = ({
+  radius,
+  defaultChecked = false,
+  onChange = () => {},
+  id = "grad-toggle-btn",
+}) => {
   return (
     <>
-      <ToggleBtnStyle radius={radius}>
+      <ToggleBtnStyle radius={radius} checked={defaultChecked}>
         <input
           type="checkbox"
-          id="grad-toggle-btn"
-          onChange={(e) => onChange(e)}
+          id={id}
+          onChange={(e) => {
+            onChange(e);
+          }}
           style={{ display: "none" }}
+          defaultChecked={defaultChecked}
         />
-        <label htmlFor="grad-toggle-btn"></label>
+        <label htmlFor={id}>
+          <span></span>
+        </label>
       </ToggleBtnStyle>
     </>
   );
@@ -24,17 +34,15 @@ const ToggleBtnStyle = styled.div`
   position: relative;
   border-radius: ${(props) => (props.radius ? props.radius + "px" : "16px")};
   box-shadow: 0px 0px 1px 1px rgba(100, 100, 100, 0.3);
-  > span {
+
+  > label {
     position: absolute;
     display: inline-block;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    width: 80%;
-    height: 3px;
-    background-color: black;
+    width: 100%;
+    height: 100%;
+    border-radius: ${(props) => (props.radius ? props.radius + "px" : "16px")};
   }
-  > label {
+  > label > span {
     position: absolute;
     display: inline-block;
     top: 50%;
@@ -42,15 +50,15 @@ const ToggleBtnStyle = styled.div`
     width: ${(props) => (props.radius ? props.radius + "px" : "16px")};
     height: ${(props) => (props.radius ? props.radius + "px" : "16px")};
     border-radius: 50%;
-    border: 1px solid black;
-    transition: 0.3s;
-    background-color: white;
+    box-shadow: 0px 0px 1px 1px rgba(100, 100, 100, 0.3);
+    transition: 0.5s;
+    background-color: ${(props) => (props.checked ? "green" : "red")};
   }
-  > input[type="checkbox"]:checked ~ label {
+  > input[type="checkbox"]:checked ~ label > span {
     left: ${(props) =>
       props.radius ? props.radius * 2 - props.radius / 4 + "px" : "26px"};
   }
-  > input[type="checkbox"] ~ label {
-    left: ${(props) => (props.radius ? props.radius / 4 + "px" : "4px")};
+  > input[type="checkbox"] ~ label > span {
+    left: ${(props) => (props.radius ? props.radius / 2 + "px" : "4px")};
   }
 `;

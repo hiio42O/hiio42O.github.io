@@ -51,3 +51,7 @@ export const HLine = styled.div`
   height: ${(props) => (props.height ? props.height : "1px")};
   background-color: ${(props) => (props.color ? props.color : "black")};
 `;
+
+export const Section = styled.div`
+  padding: 24px;
+`;
