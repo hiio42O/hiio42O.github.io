@@ -3,6 +3,7 @@
     grid-template-columns: repeat(4,1fr);
     width:90%;
     padding:0 5%;
+    overflow: hidden;
 }
 
 .widget-item{

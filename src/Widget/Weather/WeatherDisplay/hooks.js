@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-export const useWeather = () => {
+export const useWeather = (init) => {
+    const day = init.day || 1
   const [date, setDate] = useState(getDate());
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -23,7 +24,7 @@ export const useWeather = () => {
           params: {
             serviceKey:
               "85SVNYrwH8xXJbjJgkYoSQsBQqzKtn7WO1JdYfXeeMT37b9Br6ClP7F4gnruv/N4aY6wdkDHWNvzieim1yz98A==",
-            numOfRows: 14 * 24 * 7,
+            numOfRows: 14 * 24 * day,
             pageNo: 1,
             dataType: "JSON",
             base_date: date.BASEDATE,
