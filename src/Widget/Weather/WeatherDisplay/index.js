@@ -29,7 +29,7 @@ const WeatherDisplay = () => {
   }, [data, date]);
   return (
     <div className="weather-display">
-      <img src={Icon.cloudy} ref={itemRef}></img>
+      <img src={data[date.DATE + date.CURTIME]!==undefined?Icon[data[date.DATE + date.CURTIME].SKY]:""} ref={itemRef}></img>
       <div style={{ fontSize: "10vw" }}>
         {`${String(date.y)}년 ${String(date.m)}월 ${String(date.d)}일`}
       </div>
