@@ -4,7 +4,7 @@ import Place from "./WeatherDisplay/data/place.json";
 import { useEffect, useState } from "react";
 import Search from "@resources/images/common/search-bar-01-32.png";
 import CopyIcon from "@resources/images/common/copyIcon.png";
-
+import { Link } from "react-router-dom";
 const Weather = () => {
   const [keys, setKeys] = useState(Object.keys(Place));
   const [placeTree, setPlaceTree] = useState({});
@@ -175,7 +175,17 @@ const Weather = () => {
                 );
               }}
             />
+            <Link
+              style={{ display: "none" }}
+              to={{
+                pathname: "widget/weather/display",
+                search: `?location=${placeNm}`,
+              }}
+            >
+              Link
+            </Link>
           </div>
+
           <p>
             https://hiio420.com/widget/weather/display?location=
             {encodeURIComponent(placeNm)}

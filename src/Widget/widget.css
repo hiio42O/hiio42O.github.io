@@ -5,11 +5,13 @@
   padding: 0 5%;
   height: 290px;
   overflow: hidden;
+  column-gap: 16px;
 }
 
 .widget-item {
   width: 90%;
   margin: 0 5%;
+  position: relative;
 }
 
 #weather-search {
@@ -117,4 +119,15 @@
 }
 #url-copy div img {
   max-width: 100%;
+  cursor: pointer;
+}
+.text-f {
+  display: none;
+}
+
+.widget-item .title {
+  font-size: 1.6vw;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

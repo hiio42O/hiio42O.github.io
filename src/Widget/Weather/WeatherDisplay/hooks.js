@@ -3,18 +3,16 @@ import axios from "axios";
 import Icon from "./icon";
 import Place from "./data/place.json";
 import { useLocation } from "react-router";
-import { useRecoilState, atom } from "recoil";
 
 const SERVICE_KEY =
   "85SVNYrwH8xXJbjJgkYoSQsBQqzKtn7WO1JdYfXeeMT37b9Br6ClP7F4gnruv/N4aY6wdkDHWNvzieim1yz98A==";
 
-export const weatherData = atom({ key: "wearherData", default: {} });
 export const useWeather = (init) => {
   let search = useLocation().search;
   let searchParams = new URLSearchParams(search);
   const day = init.day || 1;
   const [date, setDate] = useState(getDate());
-  const [data, setData] = useRecoilState(weatherData);
+  const [data, setData] = useState({});
   const [wIcon, setWIcon] = useState(Icon.Loading);
   const [wString, setWString] = useState("");
   const [sunrise, setSunrise] = useState(null);
@@ -60,7 +58,7 @@ export const useWeather = (init) => {
     }
     axios
       .get(
-        "http://apis.data.go.kr/B090041/openapi/service/RiseSetInfoService/getLCRiseSetInfo",
+        "https://apis.data.go.kr/B090041/openapi/service/RiseSetInfoService/getLCRiseSetInfo",
         {
           params: {
             serviceKey: SERVICE_KEY,
@@ -82,7 +80,7 @@ export const useWeather = (init) => {
     }
     axios
       .get(
-        "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst",
+        "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst",
         {
           params: {
             serviceKey: SERVICE_KEY,
