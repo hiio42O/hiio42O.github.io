@@ -11,7 +11,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 // components
 import App from "./src/App";
 import rootReducer from "@Redux";
-// Elements
+import { RecoilRoot } from "recoil";
+
 const persistedState = window.localStorage.getItem("reduxState")
   ? JSON.parse(window.localStorage.getItem("reduxState"))
   : {};
@@ -23,9 +24,11 @@ const rootDomElement = document.getElementById("App");
 const rootRenderElement = createRoot(rootDomElement);
 const rootJsxElement = (
   <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <RecoilRoot>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </RecoilRoot>
   </BrowserRouter>
 );
 
