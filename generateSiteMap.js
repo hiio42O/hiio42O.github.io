@@ -9,7 +9,7 @@ const getDirs = (dirPath) => {
 };
 
 const generateSiteMap = () => {
-  let sitemaps = ["/about/", "/work/"];
+  let sitemaps = ["/about/", "/work/", "/widget/"];
 
   const pagesDirPath = path.resolve(__dirname, "src", "project");
   if (fs.existsSync(pagesDirPath)) {

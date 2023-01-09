@@ -175,7 +175,7 @@ const Weather = () => {
       {placeNm.replace(/[\s]+/gi, "").length === 0 ? null : (
         <div id="url-copy">
           <span>URL</span>
-          <div>
+          {/* <div>
             <img
               src={CopyIcon}
               onClick={(e) => {
@@ -184,7 +184,7 @@ const Weather = () => {
                 );
               }}
             />
-          </div>
+          </div> */}
 
           <p>
             https://hiio420.com/widget/weather/display?location=
