@@ -162,6 +162,15 @@ const Weather = () => {
 
       <div style={{ height: "70%" }}>
         <WeatherDisplay propPlaceNm={placeNm} />
+        <Link
+          style={{ display: "none" }}
+          to={{
+            pathname: "widget/weather/display",
+            search: `?location=${placeNm}`,
+          }}
+        >
+          Link
+        </Link>
       </div>
       {placeNm.replace(/[\s]+/gi, "").length === 0 ? null : (
         <div id="url-copy">
@@ -175,15 +184,6 @@ const Weather = () => {
                 );
               }}
             />
-            <Link
-              style={{ display: "none" }}
-              to={{
-                pathname: "widget/weather/display",
-                search: `?location=${placeNm}`,
-              }}
-            >
-              Link
-            </Link>
           </div>
 
           <p>

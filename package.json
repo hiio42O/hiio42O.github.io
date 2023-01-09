@@ -54,5 +54,14 @@
     "redux-cookie": "^0.5.9",
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.5"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/about",
+      "/widget",
+      "/widget/weather",
+      "/widget/weather/deplay"
+    ]
   }
 }
