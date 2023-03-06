@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://hiio420.com/sitemap.xml

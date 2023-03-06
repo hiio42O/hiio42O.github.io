@@ -1,97 +1,36 @@
-// src/App.js
-
-// modules
-import React, { Fragment } from "react";
-import { Routes, Route } from "react-router";
-
-// css
-import "@resources/css/app.css";
-
-// Pages
-import Main from "@pages/main";
-import About from "@pages/about";
-import Work from "@pages/work";
-
-// components
-import Layout from "@components/layout";
-
-// project
-import Project from "@project";
-// Widget
-import Widget from "@Widget";
-import Weather from "@Widget/Weather";
-import WeatherDisplay from "@Widget/Weather/WeatherDisplay";
-
-const App = () => {
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "./utils/fcm";
+import { getToken } from "firebase/messaging";
+import messaging from "./utils/fcm";
+function App() {
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    getToken(messaging, {
+      vapidKey:
+        "BD8mJ8xCqap4NyEeS6Ft_NAhyEaMQ4fM9gr6fcGHDOtGV5Q68MUhzdfybGzEF8N61qrpel_CSfO7Cm7nF6kUeDw",
+    }).then((r) => setToken(r));
+  }, []);
   return (
-    <Routes>
-      <Route exact path="/" element={<Main />}></Route>
-      <Route
-        exact
-        path="/about"
-        element={
-          <Layout>
-            <About />
-          </Layout>
-        }
-      ></Route>
-      <Route
-        exact
-        path="/work"
-        element={
-          <Layout>
-            <Work />
-          </Layout>
-        }
-      ></Route>
-
-      {Object.keys(Project).map((alphabet) => {
-        let path = `/work/${alphabet}`;
-        const components = Project[alphabet];
-        if (Object.keys(Project[alphabet]).includes("default")) return null;
-        return (
-          <Fragment key={Math.random()}>
-            {Object.keys(components).map((name) => {
-              const ProjectComponent = components[name];
-              path += `/${name.toLowerCase()}`;
-              return (
-                <Route
-                  key={Math.random()}
-                  exact
-                  path={path}
-                  element={
-                    <Layout>
-                      <ProjectComponent />
-                    </Layout>
-                  }
-                />
-              );
-            })}
-          </Fragment>
-        );
-      })}
-      <Route
-        path="/widget"
-        element={
-          <Layout>
-            <Widget />
-          </Layout>
-        }
-      ></Route>
-      <Route
-        path="/widget/weather"
-        element={
-          <Layout>
-            <Weather />
-          </Layout>
-        }
-      ></Route>
-      <Route
-        path="/widget/weather/display"
-        element={<WeatherDisplay />}
-      ></Route>
-    </Routes>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <p>{token}</p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
 export default App;
